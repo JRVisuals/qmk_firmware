@@ -5,7 +5,9 @@ This feature allows you to use RGB LED matrices driven by external drivers. It h
 If you want to use single color LED's you should use the [LED Matrix Subsystem](feature_led_matrix.md) instead.
 
 ## Driver configuration :id=driver-configuration
+
 ---
+
 ### IS31FL3731 :id=is31fl3731
 
 There is basic support for addressable RGB matrix lighting with the I2C IS31FL3731 RGB controller. To enable it, add this to your `rules.mk`:
@@ -55,6 +57,7 @@ const is31_led g_is31_leds[DRIVER_LED_TOTAL] = {
 Where `Cx_y` is the location of the LED in the matrix defined by [the datasheet](http://www.issi.com/WW/pdf/31FL3731.pdf) and the header file `drivers/issi/is31fl3731.h`. The `driver` is the index of the driver you defined in your `config.h` (`0` or `1` right now).
 
 ---
+
 ### IS31FL3733/IS31FL3737 :id=is31fl3733is31fl3737
 
 !> For the IS31FL3737, replace all instances of `IS31FL3733` below with `IS31FL3737`.
@@ -151,7 +154,7 @@ x = 224 / (NUMBER_OF_COLS - 1) * COL_POSITION
 y =  64 / (NUMBER_OF_ROWS - 1) * ROW_POSITION
 ```
 
-Where NUMBER_OF_COLS, NUMBER_OF_ROWS, COL_POSITION, & ROW_POSITION are all based on the physical layout of your keyboard, not the electrical layout. 
+Where NUMBER_OF_COLS, NUMBER_OF_ROWS, COL_POSITION, & ROW_POSITION are all based on the physical layout of your keyboard, not the electrical layout.
 
 As mentioned earlier, the center of the keyboard by default is expected to be `{ 112, 32 }`, but this can be changed if you want to more accurately calculate the LED's physical `{ x, y }` positions. Keyboard designers can implement `#define RGB_MATRIX_CENTER { 112, 32 }` in their config.h file with the new center point of the keyboard, or where they want it to be allowing more possibilities for the `{ x, y }` values. Do note that the maximum value for x or y is 255, and the recommended maximum is 224 as this gives animations runoff room before they reset.
 
@@ -159,42 +162,42 @@ As mentioned earlier, the center of the keyboard by default is expected to be `{
 
 ## Flags :id=flags
 
-|Define                      |Value |Description                                      |
-|----------------------------|------|-------------------------------------------------|
-|`HAS_FLAGS(bits, flags)`    |*n/a* |Evaluates to `true` if `bits` has all `flags` set|
-|`HAS_ANY_FLAGS(bits, flags)`|*n/a* |Evaluates to `true` if `bits` has any `flags` set|
-|`LED_FLAG_NONE`             |`0x00`|If this LED has no flags                         |
-|`LED_FLAG_ALL`              |`0xFF`|If this LED has all flags                        |
-|`LED_FLAG_MODIFIER`         |`0x01`|If the LED is on a modifier key                  |
-|`LED_FLAG_UNDERGLOW`        |`0x02`|If the LED is for underglow                      |
-|`LED_FLAG_KEYLIGHT`         |`0x04`|If the LED is for key backlight                  |
-|`LED_FLAG_INDICATOR`        |`0x08`|If the LED is for keyboard state indication      |
+| Define                       | Value  | Description                                       |
+| ---------------------------- | ------ | ------------------------------------------------- |
+| `HAS_FLAGS(bits, flags)`     | _n/a_  | Evaluates to `true` if `bits` has all `flags` set |
+| `HAS_ANY_FLAGS(bits, flags)` | _n/a_  | Evaluates to `true` if `bits` has any `flags` set |
+| `LED_FLAG_NONE`              | `0x00` | If this LED has no flags                          |
+| `LED_FLAG_ALL`               | `0xFF` | If this LED has all flags                         |
+| `LED_FLAG_MODIFIER`          | `0x01` | If the LED is on a modifier key                   |
+| `LED_FLAG_UNDERGLOW`         | `0x02` | If the LED is for underglow                       |
+| `LED_FLAG_KEYLIGHT`          | `0x04` | If the LED is for key backlight                   |
+| `LED_FLAG_INDICATOR`         | `0x08` | If the LED is for keyboard state indication       |
 
 ## Keycodes :id=keycodes
 
 All RGB keycodes are currently shared with the RGBLIGHT system:
 
-|Key                |Aliases   |Description                                                                           |
-|-------------------|----------|--------------------------------------------------------------------------------------|
-|`RGB_TOG`          |          |Toggle RGB lighting on or off                                                         |
-|`RGB_MODE_FORWARD` |`RGB_MOD` |Cycle through modes, reverse direction when Shift is held                             |
-|`RGB_MODE_REVERSE` |`RGB_RMOD`|Cycle through modes in reverse, forward direction when Shift is held                  |
-|`RGB_HUI`          |          |Increase hue, decrease hue when Shift is held                                         |
-|`RGB_HUD`          |          |Decrease hue, increase hue when Shift is held                                         |
-|`RGB_SAI`          |          |Increase saturation, decrease saturation when Shift is held                           |
-|`RGB_SAD`          |          |Decrease saturation, increase saturation when Shift is held                           |
-|`RGB_VAI`          |          |Increase value (brightness), decrease value when Shift is held                        |
-|`RGB_VAD`          |          |Decrease value (brightness), increase value when Shift is held                        |
-|`RGB_SPI`          |          |Increase effect speed (does not support eeprom yet), decrease speed when Shift is held|
-|`RGB_SPD`          |          |Decrease effect speed (does not support eeprom yet), increase speed when Shift is held|
-|`RGB_MODE_PLAIN`   |`RGB_M_P `|Static (no animation) mode                                                            |
-|`RGB_MODE_BREATHE` |`RGB_M_B` |Breathing animation mode                                                              |
-|`RGB_MODE_RAINBOW` |`RGB_M_R` |Full gradient scrolling left to right (uses the `RGB_MATRIX_CYCLE_LEFT_RIGHT` mode)   |
-|`RGB_MODE_SWIRL`   |`RGB_M_SW`|Full gradient spinning pinwheel around center of keyboard (uses `RGB_MATRIX_CYCLE_PINWHEEL` mode) |
+| Key                | Aliases    | Description                                                                                       |
+| ------------------ | ---------- | ------------------------------------------------------------------------------------------------- |
+| `RGB_TOG`          |            | Toggle RGB lighting on or off                                                                     |
+| `RGB_MODE_FORWARD` | `RGB_MOD`  | Cycle through modes, reverse direction when Shift is held                                         |
+| `RGB_MODE_REVERSE` | `RGB_RMOD` | Cycle through modes in reverse, forward direction when Shift is held                              |
+| `RGB_HUI`          |            | Increase hue, decrease hue when Shift is held                                                     |
+| `RGB_HUD`          |            | Decrease hue, increase hue when Shift is held                                                     |
+| `RGB_SAI`          |            | Increase saturation, decrease saturation when Shift is held                                       |
+| `RGB_SAD`          |            | Decrease saturation, increase saturation when Shift is held                                       |
+| `RGB_VAI`          |            | Increase value (brightness), decrease value when Shift is held                                    |
+| `RGB_VAD`          |            | Decrease value (brightness), increase value when Shift is held                                    |
+| `RGB_SPI`          |            | Increase effect speed (does not support eeprom yet), decrease speed when Shift is held            |
+| `RGB_SPD`          |            | Decrease effect speed (does not support eeprom yet), increase speed when Shift is held            |
+| `RGB_MODE_PLAIN`   | `RGB_M_P ` | Static (no animation) mode                                                                        |
+| `RGB_MODE_BREATHE` | `RGB_M_B`  | Breathing animation mode                                                                          |
+| `RGB_MODE_RAINBOW` | `RGB_M_R`  | Full gradient scrolling left to right (uses the `RGB_MATRIX_CYCLE_LEFT_RIGHT` mode)               |
+| `RGB_MODE_SWIRL`   | `RGB_M_SW` | Full gradient spinning pinwheel around center of keyboard (uses `RGB_MATRIX_CYCLE_PINWHEEL` mode) |
 
-* `RGB_MODE_*` keycodes will generally work, but not all of the modes are currently mapped to the correct effects for the RGB Matrix system.
+-   `RGB_MODE_*` keycodes will generally work, but not all of the modes are currently mapped to the correct effects for the RGB Matrix system.
 
-`RGB_MODE_PLAIN`, `RGB_MODE_BREATHE`, `RGB_MODE_RAINBOW`, and `RGB_MATRIX_SWIRL` are the only ones that are mapped properly. The rest don't have a direct equivalent, and are not mapped. 
+`RGB_MODE_PLAIN`, `RGB_MODE_BREATHE`, `RGB_MODE_RAINBOW`, and `RGB_MATRIX_SWIRL` are the only ones that are mapped properly. The rest don't have a direct equivalent, and are not mapped.
 
 !> By default, if you have both the [RGB Light](feature_rgblight.md) and the RGB Matrix feature enabled, these keycodes will work for both features, at the same time. You can disable the keycode functionality by defining the `*_DISABLE_KEYCODES` option for the specific feature.
 
@@ -232,6 +235,7 @@ enum rgb_matrix_effects {
 #if define(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
     RGB_MATRIX_TYPING_HEATMAP,      // How hot is your WPM!
     RGB_MATRIX_DIGITAL_RAIN,        // That famous computer simulation
+    RGB_MATRIX_DIGITAL_RAIN_RELOADED,        // That famous computer simulation - JoskerDu Version
 #endif
 #if defined(RGB_MATRIX_KEYPRESSES) || defined(RGB_MATRIX_KEYRELEASES)
     RGB_MATRIX_SOLID_REACTIVE_SIMPLE,   // Pulses keys hit to hue & value then fades value out
@@ -253,46 +257,44 @@ enum rgb_matrix_effects {
 
 You can disable a single effect by defining `DISABLE_[EFFECT_NAME]` in your `config.h`:
 
-
-|Define                                                 |Description                                    |
-|-------------------------------------------------------|-----------------------------------------------|
-|`#define DISABLE_RGB_MATRIX_ALPHAS_MODS`               |Disables `RGB_MATRIX_ALPHAS_MODS`              |
-|`#define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN`          |Disables `RGB_MATRIX_GRADIENT_UP_DOWN`         |
-|`#define DISABLE_RGB_MATRIX_BREATHING`                 |Disables `RGB_MATRIX_BREATHING`                |
-|`#define DISABLE_RGB_MATRIX_BAND_SAT`                  |Disables `RGB_MATRIX_BAND_SAT`                 |
-|`#define DISABLE_RGB_MATRIX_BAND_VAL`                  |Disables `RGB_MATRIX_BAND_VAL`                 |
-|`#define DISABLE_RGB_MATRIX_BAND_PINWHEEL_SAT`         |Disables `RGB_MATRIX_BAND_PINWHEEL_SAT`        |
-|`#define DISABLE_RGB_MATRIX_BAND_PINWHEEL_VAL`         |Disables `RGB_MATRIX_BAND_PINWHEEL_VAL`        |
-|`#define DISABLE_RGB_MATRIX_BAND_SPIRAL_SAT`           |Disables `RGB_MATRIX_BAND_SPIRAL_SAT`          |
-|`#define DISABLE_RGB_MATRIX_BAND_SPIRAL_VAL`           |Disables `RGB_MATRIX_BAND_SPIRAL_VAL`          |
-|`#define DISABLE_RGB_MATRIX_CYCLE_ALL`                 |Disables `RGB_MATRIX_CYCLE_ALL`                |
-|`#define DISABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT`          |Disables `RGB_MATRIX_CYCLE_LEFT_RIGHT`         |
-|`#define DISABLE_RGB_MATRIX_CYCLE_UP_DOWN`             |Disables `RGB_MATRIX_CYCLE_UP_DOWN`            |
-|`#define DISABLE_RGB_MATRIX_CYCLE_OUT_IN`              |Disables `RGB_MATRIX_CYCLE_OUT_IN`             |
-|`#define DISABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL`         |Disables `RGB_MATRIX_CYCLE_OUT_IN_DUAL`        |
-|`#define DISABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON`    |Disables `RGB_MATRIX_RAINBOW_MOVING_CHEVRON`   |
-|`#define DISABLE_RGB_MATRIX_DUAL_BEACON`               |Disables `RGB_MATRIX_DUAL_BEACON`              |
-|`#define DISABLE_RGB_MATRIX_CYCLE_PINWHEEL`            |Disables `RGB_MATRIX_CYCLE_PINWHEEL`           |
-|`#define DISABLE_RGB_MATRIX_CYCLE_SPIRAL`              |Disables `RGB_MATRIX_CYCLE_SPIRAL`             |
-|`#define DISABLE_RGB_MATRIX_RAINBOW_BEACON`            |Disables `RGB_MATRIX_RAINBOW_BEACON`           |
-|`#define DISABLE_RGB_MATRIX_RAINBOW_PINWHEELS`         |Disables `RGB_MATRIX_RAINBOW_PINWHEELS`        |
-|`#define DISABLE_RGB_MATRIX_RAINDROPS`                 |Disables `RGB_MATRIX_RAINDROPS`                |
-|`#define DISABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS`       |Disables `RGB_MATRIX_JELLYBEAN_RAINDROPS`      |
-|`#define DISABLE_RGB_MATRIX_TYPING_HEATMAP`            |Disables `RGB_MATRIX_TYPING_HEATMAP`           |
-|`#define DISABLE_RGB_MATRIX_DIGITAL_RAIN`              |Disables `RGB_MATRIX_DIGITAL_RAIN`             |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE`            |Disables `RGB_MATRIX_SOLID_REACTIVE`           |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE`     |Disables `RGB_MATRIX_SOLID_REACTIVE_SIMPLE`    |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE`       |Disables `RGB_MATRIX_SOLID_REACTIVE_WIDE`      |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE`  |Disables `RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE` |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS`      |Disables `RGB_MATRIX_SOLID_REACTIVE_CROSS`     |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS` |Disables `RGB_MATRIX_SOLID_REACTIVE_MULTICROSS`|
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS`      |Disables `RGB_MATRIX_SOLID_REACTIVE_NEXUS`     |
-|`#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS` |Disables `RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS`|
-|`#define DISABLE_RGB_MATRIX_SPLASH`                    |Disables `RGB_MATRIX_SPLASH`                   |
-|`#define DISABLE_RGB_MATRIX_MULTISPLASH`               |Disables `RGB_MATRIX_MULTISPLASH`              |
-|`#define DISABLE_RGB_MATRIX_SOLID_SPLASH`              |Disables `RGB_MATRIX_SOLID_SPLASH`             |
-|`#define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH`         |Disables `RGB_MATRIX_SOLID_MULTISPLASH`        |
-
+| Define                                                 | Description                                     |
+| ------------------------------------------------------ | ----------------------------------------------- |
+| `#define DISABLE_RGB_MATRIX_ALPHAS_MODS`               | Disables `RGB_MATRIX_ALPHAS_MODS`               |
+| `#define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN`          | Disables `RGB_MATRIX_GRADIENT_UP_DOWN`          |
+| `#define DISABLE_RGB_MATRIX_BREATHING`                 | Disables `RGB_MATRIX_BREATHING`                 |
+| `#define DISABLE_RGB_MATRIX_BAND_SAT`                  | Disables `RGB_MATRIX_BAND_SAT`                  |
+| `#define DISABLE_RGB_MATRIX_BAND_VAL`                  | Disables `RGB_MATRIX_BAND_VAL`                  |
+| `#define DISABLE_RGB_MATRIX_BAND_PINWHEEL_SAT`         | Disables `RGB_MATRIX_BAND_PINWHEEL_SAT`         |
+| `#define DISABLE_RGB_MATRIX_BAND_PINWHEEL_VAL`         | Disables `RGB_MATRIX_BAND_PINWHEEL_VAL`         |
+| `#define DISABLE_RGB_MATRIX_BAND_SPIRAL_SAT`           | Disables `RGB_MATRIX_BAND_SPIRAL_SAT`           |
+| `#define DISABLE_RGB_MATRIX_BAND_SPIRAL_VAL`           | Disables `RGB_MATRIX_BAND_SPIRAL_VAL`           |
+| `#define DISABLE_RGB_MATRIX_CYCLE_ALL`                 | Disables `RGB_MATRIX_CYCLE_ALL`                 |
+| `#define DISABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT`          | Disables `RGB_MATRIX_CYCLE_LEFT_RIGHT`          |
+| `#define DISABLE_RGB_MATRIX_CYCLE_UP_DOWN`             | Disables `RGB_MATRIX_CYCLE_UP_DOWN`             |
+| `#define DISABLE_RGB_MATRIX_CYCLE_OUT_IN`              | Disables `RGB_MATRIX_CYCLE_OUT_IN`              |
+| `#define DISABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL`         | Disables `RGB_MATRIX_CYCLE_OUT_IN_DUAL`         |
+| `#define DISABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON`    | Disables `RGB_MATRIX_RAINBOW_MOVING_CHEVRON`    |
+| `#define DISABLE_RGB_MATRIX_DUAL_BEACON`               | Disables `RGB_MATRIX_DUAL_BEACON`               |
+| `#define DISABLE_RGB_MATRIX_CYCLE_PINWHEEL`            | Disables `RGB_MATRIX_CYCLE_PINWHEEL`            |
+| `#define DISABLE_RGB_MATRIX_CYCLE_SPIRAL`              | Disables `RGB_MATRIX_CYCLE_SPIRAL`              |
+| `#define DISABLE_RGB_MATRIX_RAINBOW_BEACON`            | Disables `RGB_MATRIX_RAINBOW_BEACON`            |
+| `#define DISABLE_RGB_MATRIX_RAINBOW_PINWHEELS`         | Disables `RGB_MATRIX_RAINBOW_PINWHEELS`         |
+| `#define DISABLE_RGB_MATRIX_RAINDROPS`                 | Disables `RGB_MATRIX_RAINDROPS`                 |
+| `#define DISABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS`       | Disables `RGB_MATRIX_JELLYBEAN_RAINDROPS`       |
+| `#define DISABLE_RGB_MATRIX_TYPING_HEATMAP`            | Disables `RGB_MATRIX_TYPING_HEATMAP`            |
+| `#define DISABLE_RGB_MATRIX_DIGITAL_RAIN`              | Disables `RGB_MATRIX_DIGITAL_RAIN`              |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE`            | Disables `RGB_MATRIX_SOLID_REACTIVE`            |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE`     | Disables `RGB_MATRIX_SOLID_REACTIVE_SIMPLE`     |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE`       | Disables `RGB_MATRIX_SOLID_REACTIVE_WIDE`       |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE`  | Disables `RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE`  |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS`      | Disables `RGB_MATRIX_SOLID_REACTIVE_CROSS`      |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS` | Disables `RGB_MATRIX_SOLID_REACTIVE_MULTICROSS` |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS`      | Disables `RGB_MATRIX_SOLID_REACTIVE_NEXUS`      |
+| `#define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS` | Disables `RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS` |
+| `#define DISABLE_RGB_MATRIX_SPLASH`                    | Disables `RGB_MATRIX_SPLASH`                    |
+| `#define DISABLE_RGB_MATRIX_MULTISPLASH`               | Disables `RGB_MATRIX_MULTISPLASH`               |
+| `#define DISABLE_RGB_MATRIX_SOLID_SPLASH`              | Disables `RGB_MATRIX_SOLID_SPLASH`              |
+| `#define DISABLE_RGB_MATRIX_SOLID_MULTISPLASH`         | Disables `RGB_MATRIX_SOLID_MULTISPLASH`         |
 
 ## Custom RGB Matrix Effects :id=custom-rgb-matrix-effects
 
@@ -349,34 +351,32 @@ static bool my_cool_effect2(effect_params_t* params) {
 
 For inspiration and examples, check out the built-in effects under `quantum/rgb_matrix_animation/`
 
-
 ## Colors :id=colors
 
 These are shorthands to popular colors. The `RGB` ones can be passed to the `setrgb` functions, while the `HSV` ones to the `sethsv` functions.
 
-|RGB                |HSV                |
-|-------------------|-------------------|
-|`RGB_WHITE`        |`HSV_WHITE`        |
-|`RGB_RED`          |`HSV_RED`          |
-|`RGB_CORAL`        |`HSV_CORAL`        |
-|`RGB_ORANGE`       |`HSV_ORANGE`       |
-|`RGB_GOLDENROD`    |`HSV_GOLDENROD`    |
-|`RGB_GOLD`         |`HSV_GOLD`         |
-|`RGB_YELLOW`       |`HSV_YELLOW`       |
-|`RGB_CHARTREUSE`   |`HSV_CHARTREUSE`   |
-|`RGB_GREEN`        |`HSV_GREEN`        |
-|`RGB_SPRINGGREEN`  |`HSV_SPRINGGREEN`  |
-|`RGB_TURQUOISE`    |`HSV_TURQUOISE`    |
-|`RGB_TEAL`         |`HSV_TEAL`         |
-|`RGB_CYAN`         |`HSV_CYAN`         |
-|`RGB_AZURE`        |`HSV_AZURE`        |
-|`RGB_BLUE`         |`HSV_BLUE`         |
-|`RGB_PURPLE`       |`HSV_PURPLE`       |
-|`RGB_MAGENTA`      |`HSV_MAGENTA`      |
-|`RGB_PINK`         |`HSV_PINK`         |
+| RGB               | HSV               |
+| ----------------- | ----------------- |
+| `RGB_WHITE`       | `HSV_WHITE`       |
+| `RGB_RED`         | `HSV_RED`         |
+| `RGB_CORAL`       | `HSV_CORAL`       |
+| `RGB_ORANGE`      | `HSV_ORANGE`      |
+| `RGB_GOLDENROD`   | `HSV_GOLDENROD`   |
+| `RGB_GOLD`        | `HSV_GOLD`        |
+| `RGB_YELLOW`      | `HSV_YELLOW`      |
+| `RGB_CHARTREUSE`  | `HSV_CHARTREUSE`  |
+| `RGB_GREEN`       | `HSV_GREEN`       |
+| `RGB_SPRINGGREEN` | `HSV_SPRINGGREEN` |
+| `RGB_TURQUOISE`   | `HSV_TURQUOISE`   |
+| `RGB_TEAL`        | `HSV_TEAL`        |
+| `RGB_CYAN`        | `HSV_CYAN`        |
+| `RGB_AZURE`       | `HSV_AZURE`       |
+| `RGB_BLUE`        | `HSV_BLUE`        |
+| `RGB_PURPLE`      | `HSV_PURPLE`      |
+| `RGB_MAGENTA`     | `HSV_MAGENTA`     |
+| `RGB_PINK`        | `HSV_PINK`        |
 
 These are defined in [`rgblight_list.h`](https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight_list.h). Feel free to add to this list!
-
 
 ## Additional `config.h` Options :id=additional-configh-options
 
@@ -410,72 +410,78 @@ Where `28` is an unused index from `eeconfig.h`.
 ## Functions :id=functions
 
 ### Direct Operation :id=direct-operation
-|Function                                    |Description  |
-|--------------------------------------------|-------------|
-|`rgb_matrix_set_color_all(r, g, b)`         |Set all of the LEDs to the given RGB value, where `r`/`g`/`b` are between 0 and 255 (not written to EEPROM) |
-|`rgb_matrix_set_color(index, r, g, b)`      |Set a single LED to the given RGB value, where `r`/`g`/`b` are between 0 and 255, and `index` is between 0 and `DRIVER_LED_TOTAL` (not written to EEPROM) |
+
+| Function                               | Description                                                                                                                                               |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rgb_matrix_set_color_all(r, g, b)`    | Set all of the LEDs to the given RGB value, where `r`/`g`/`b` are between 0 and 255 (not written to EEPROM)                                               |
+| `rgb_matrix_set_color(index, r, g, b)` | Set a single LED to the given RGB value, where `r`/`g`/`b` are between 0 and 255, and `index` is between 0 and `DRIVER_LED_TOTAL` (not written to EEPROM) |
 
 ### Disable/Enable Effects :id=disable-enable-effects
-|Function                                    |Description  |
-|--------------------------------------------|-------------|
-|`rgb_matrix_toggle()`                       |Toggle effect range LEDs between on and off |
-|`rgb_matrix_toggle_noeeprom()`              |Toggle effect range LEDs between on and off (not written to EEPROM) |
-|`rgb_matrix_enable()`                       |Turn effect range LEDs on, based on their previous state |
-|`rgb_matrix_enable_noeeprom()`              |Turn effect range LEDs on, based on their previous state (not written to EEPROM) |
-|`rgb_matrix_disable()`                      |Turn effect range LEDs off, based on their previous state |
-|`rgb_matrix_disable_noeeprom()`             |Turn effect range LEDs off, based on their previous state (not written to EEPROM) |
+
+| Function                        | Description                                                                       |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| `rgb_matrix_toggle()`           | Toggle effect range LEDs between on and off                                       |
+| `rgb_matrix_toggle_noeeprom()`  | Toggle effect range LEDs between on and off (not written to EEPROM)               |
+| `rgb_matrix_enable()`           | Turn effect range LEDs on, based on their previous state                          |
+| `rgb_matrix_enable_noeeprom()`  | Turn effect range LEDs on, based on their previous state (not written to EEPROM)  |
+| `rgb_matrix_disable()`          | Turn effect range LEDs off, based on their previous state                         |
+| `rgb_matrix_disable_noeeprom()` | Turn effect range LEDs off, based on their previous state (not written to EEPROM) |
 
 ### Change Effect Mode :id=change-effect-mode
-|Function                                    |Description  |
-|--------------------------------------------|-------------|
-|`rgb_matrix_mode(mode)`                     |Set the mode, if RGB animations are enabled |
-|`rgb_matrix_mode_noeeprom(mode)`            |Set the mode, if RGB animations are enabled (not written to EEPROM) |
-|`rgb_matrix_step()`                         |Change the mode to the next RGB animation in the list of enabled RGB animations |
-|`rgb_matrix_step_noeeprom()`                |Change the mode to the next RGB animation in the list of enabled RGB animations (not written to EEPROM) |
-|`rgb_matrix_step_reverse()`                 |Change the mode to the previous RGB animation in the list of enabled RGB animations |
-|`rgb_matrix_step_reverse_noeeprom()`        |Change the mode to the previous RGB animation in the list of enabled RGB animations (not written to EEPROM) |
-|`rgb_matrix_increase_speed()`               |Increase the speed of the animations |
-|`rgb_matrix_increase_speed_noeeprom()`      |Increase the speed of the animations (not written to EEPROM) |
-|`rgb_matrix_decrease_speed()`               |Decrease the speed of the animations |
-|`rgb_matrix_decrease_speed_noeeprom()`      |Decrease the speed of the animations (not written to EEPROM) |
-|`rgb_matrix_set_speed(speed)`               |Set the speed of the animations to the given value where `speed` is between 0 and 255 |
-|`rgb_matrix_set_speed_noeeprom(speed)`      |Set the speed of the animations to the given value where `speed` is between 0 and 255 (not written to EEPROM) |
+
+| Function                               | Description                                                                                                   |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `rgb_matrix_mode(mode)`                | Set the mode, if RGB animations are enabled                                                                   |
+| `rgb_matrix_mode_noeeprom(mode)`       | Set the mode, if RGB animations are enabled (not written to EEPROM)                                           |
+| `rgb_matrix_step()`                    | Change the mode to the next RGB animation in the list of enabled RGB animations                               |
+| `rgb_matrix_step_noeeprom()`           | Change the mode to the next RGB animation in the list of enabled RGB animations (not written to EEPROM)       |
+| `rgb_matrix_step_reverse()`            | Change the mode to the previous RGB animation in the list of enabled RGB animations                           |
+| `rgb_matrix_step_reverse_noeeprom()`   | Change the mode to the previous RGB animation in the list of enabled RGB animations (not written to EEPROM)   |
+| `rgb_matrix_increase_speed()`          | Increase the speed of the animations                                                                          |
+| `rgb_matrix_increase_speed_noeeprom()` | Increase the speed of the animations (not written to EEPROM)                                                  |
+| `rgb_matrix_decrease_speed()`          | Decrease the speed of the animations                                                                          |
+| `rgb_matrix_decrease_speed_noeeprom()` | Decrease the speed of the animations (not written to EEPROM)                                                  |
+| `rgb_matrix_set_speed(speed)`          | Set the speed of the animations to the given value where `speed` is between 0 and 255                         |
+| `rgb_matrix_set_speed_noeeprom(speed)` | Set the speed of the animations to the given value where `speed` is between 0 and 255 (not written to EEPROM) |
 
 ### Change Color :id=change-color
-|Function                                    |Description  |
-|--------------------------------------------|-------------|
-|`rgb_matrix_increase_hue()`                 |Increase the hue for effect range LEDs. This wraps around at maximum hue |
-|`rgb_matrix_increase_hue_noeeprom()`        |Increase the hue for effect range LEDs. This wraps around at maximum hue (not written to EEPROM) |
-|`rgb_matrix_decrease_hue()`                 |Decrease the hue for effect range LEDs. This wraps around at minimum hue |
-|`rgb_matrix_decrease_hue_noeeprom()`        |Decrease the hue for effect range LEDs. This wraps around at minimum hue (not written to EEPROM) |
-|`rgb_matrix_increase_sat()`                 |Increase the saturation for effect range LEDs. This wraps around at maximum saturation |
-|`rgb_matrix_increase_sat_noeeprom()`        |Increase the saturation for effect range LEDs. This wraps around at maximum saturation (not written to EEPROM) |
-|`rgb_matrix_decrease_sat()`                 |Decrease the saturation for effect range LEDs. This wraps around at minimum saturation |
-|`rgb_matrix_decrease_sat_noeeprom()`        |Decrease the saturation for effect range LEDs. This wraps around at minimum saturation (not written to EEPROM) |
-|`rgb_matrix_increase_val()`                 |Increase the value for effect range LEDs. This wraps around at maximum value |
-|`rgb_matrix_increase_val_noeeprom()`        |Increase the value for effect range LEDs. This wraps around at maximum value (not written to EEPROM) |
-|`rgb_matrix_decrease_val()`                 |Decrease the value for effect range LEDs. This wraps around at minimum value |
-|`rgb_matrix_decrease_val_noeeprom()`        |Decrease the value for effect range LEDs. This wraps around at minimum value (not written to EEPROM) |
-|`rgb_matrix_sethsv(h, s, v)`                |Set LEDs to the given HSV value where `h`/`s`/`v` are between 0 and 255 |
-|`rgb_matrix_sethsv_noeeprom(h, s, v)`       |Set LEDs to the given HSV value where `h`/`s`/`v` are between 0 and 255 (not written to EEPROM) |
+
+| Function                              | Description                                                                                                    |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `rgb_matrix_increase_hue()`           | Increase the hue for effect range LEDs. This wraps around at maximum hue                                       |
+| `rgb_matrix_increase_hue_noeeprom()`  | Increase the hue for effect range LEDs. This wraps around at maximum hue (not written to EEPROM)               |
+| `rgb_matrix_decrease_hue()`           | Decrease the hue for effect range LEDs. This wraps around at minimum hue                                       |
+| `rgb_matrix_decrease_hue_noeeprom()`  | Decrease the hue for effect range LEDs. This wraps around at minimum hue (not written to EEPROM)               |
+| `rgb_matrix_increase_sat()`           | Increase the saturation for effect range LEDs. This wraps around at maximum saturation                         |
+| `rgb_matrix_increase_sat_noeeprom()`  | Increase the saturation for effect range LEDs. This wraps around at maximum saturation (not written to EEPROM) |
+| `rgb_matrix_decrease_sat()`           | Decrease the saturation for effect range LEDs. This wraps around at minimum saturation                         |
+| `rgb_matrix_decrease_sat_noeeprom()`  | Decrease the saturation for effect range LEDs. This wraps around at minimum saturation (not written to EEPROM) |
+| `rgb_matrix_increase_val()`           | Increase the value for effect range LEDs. This wraps around at maximum value                                   |
+| `rgb_matrix_increase_val_noeeprom()`  | Increase the value for effect range LEDs. This wraps around at maximum value (not written to EEPROM)           |
+| `rgb_matrix_decrease_val()`           | Decrease the value for effect range LEDs. This wraps around at minimum value                                   |
+| `rgb_matrix_decrease_val_noeeprom()`  | Decrease the value for effect range LEDs. This wraps around at minimum value (not written to EEPROM)           |
+| `rgb_matrix_sethsv(h, s, v)`          | Set LEDs to the given HSV value where `h`/`s`/`v` are between 0 and 255                                        |
+| `rgb_matrix_sethsv_noeeprom(h, s, v)` | Set LEDs to the given HSV value where `h`/`s`/`v` are between 0 and 255 (not written to EEPROM)                |
 
 ### Query Current Status :id=query-current-status
-|Function                         |Description                |
-|---------------------------------|---------------------------|
-|`rgb_matrix_is_enabled()`        |Gets current on/off status |
-|`rgb_matrix_get_mode()`          |Gets current mode          |
-|`rgb_matrix_get_hue()`           |Gets current hue           |
-|`rgb_matrix_get_sat()`           |Gets current sat           |
-|`rgb_matrix_get_val()`           |Gets current val           |
-|`rgb_matrix_get_hsv()`           |Gets hue, sat, and val and returns a [`HSV` structure](https://github.com/qmk/qmk_firmware/blob/7ba6456c0b2e041bb9f97dbed265c5b8b4b12192/quantum/color.h#L56-L61)|
-|`rgb_matrix_get_speed()`         |Gets current speed         |
-|`rgb_matrix_get_suspend_state()` |Gets current suspend state |
+
+| Function                         | Description                                                                                                                                                       |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rgb_matrix_is_enabled()`        | Gets current on/off status                                                                                                                                        |
+| `rgb_matrix_get_mode()`          | Gets current mode                                                                                                                                                 |
+| `rgb_matrix_get_hue()`           | Gets current hue                                                                                                                                                  |
+| `rgb_matrix_get_sat()`           | Gets current sat                                                                                                                                                  |
+| `rgb_matrix_get_val()`           | Gets current val                                                                                                                                                  |
+| `rgb_matrix_get_hsv()`           | Gets hue, sat, and val and returns a [`HSV` structure](https://github.com/qmk/qmk_firmware/blob/7ba6456c0b2e041bb9f97dbed265c5b8b4b12192/quantum/color.h#L56-L61) |
+| `rgb_matrix_get_speed()`         | Gets current speed                                                                                                                                                |
+| `rgb_matrix_get_suspend_state()` | Gets current suspend state                                                                                                                                        |
 
 ## Callbacks :id=callbacks
 
 ### Indicators :id=indicators
 
-If you want to set custom indicators, such as an LED for Caps Lock, or layer indication, you can use the `rgb_matrix_indicators_kb` or `rgb_matrix_indicators_user` function for that: 
+If you want to set custom indicators, such as an LED for Caps Lock, or layer indication, you can use the `rgb_matrix_indicators_kb` or `rgb_matrix_indicators_user` function for that:
+
 ```c
 void rgb_matrix_indicators_kb(void) {
     rgb_matrix_set_color(index, red, green, blue);
@@ -483,7 +489,8 @@ void rgb_matrix_indicators_kb(void) {
 ```
 
 ### Suspended state :id=suspended-state
-To use the suspend feature, make sure that `#define RGB_DISABLE_WHEN_USB_SUSPENDED true` is added to the `config.h` file. 
+
+To use the suspend feature, make sure that `#define RGB_DISABLE_WHEN_USB_SUSPENDED true` is added to the `config.h` file.
 
 Additionally add this to your `<keyboard>.c`:
 
@@ -498,7 +505,9 @@ void suspend_wakeup_init_kb(void) {
     suspend_wakeup_init_user();
 }
 ```
+
 or add this to your `keymap.c`:
+
 ```c
 void suspend_power_down_user(void) {
     rgb_matrix_set_suspend_state(true);
