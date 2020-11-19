@@ -112,3 +112,8 @@ This layer is mostly for quick typing numbers using the numpad. You have NumLock
 * Put RGB controls on the function layout
 * Put back some removed songs to test audio
 * Starting to add code macros to media layer
+* Removed F11-F20
+* Added Mac screenshot keys to raised layer
+
+## Updated Map
+http://www.keyboard-layout-editor.com/#/gists/b1849c3de3e27b7ff62f4ed1df172baf
