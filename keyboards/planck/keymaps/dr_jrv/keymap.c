@@ -1,4 +1,4 @@
-// Layout picture at http://www.keyboard-layout-editor.com/#/gists/125febfad6960add078e6f14256539b6
+// Layout picture at http://www.keyboard-layout-editor.com/#/gists/b1849c3de3e27b7ff62f4ed1df172baf
 
 #include QMK_KEYBOARD_H
 
@@ -33,6 +33,7 @@ enum planck_keycodes {
     GIT_ADD,
     GIT_COMMIT,
     GIT_STATUS,
+    GIT_RESET,
 };
 
 
@@ -123,25 +124,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,-----------------------------------------------------------------------------------.
     * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * | Del  |      |      |SS_FUL|SS_SEL|      |      |   -  |   =  |   [  |   ]  |  \   |
+    * |      |      |      |SS_FUL|SS_SEL|      |      |   -  |   =  |   [  |   ]  |  \   |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |LShift|      |      |      |      |      |      |ISO # |ISO / | NULL | PgUp | Enter|
+    * |LShift|      |      |      |      |      |      |ISO # |ISO / | NULL |      | Enter|
     * |------+------+------+------+------+-------------+------+------+------+------+------|
-    * |      |      |      |      |      |             |      |      | Home | PgDn |  End |
+    * |      |      |      |      |      |             |      |      |      |      |       |
     * `-----------------------------------------------------------------------------------'
     */
     [_RAISE] = LAYOUT_planck_grid(
         KC_GRV , KC_1,    KC_2,      KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_DEL,
-        KC_DEL , _______,  _______,   SS_FUL,  SS_SEL, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-        KC_LSFT, _______,  _______,   _______,  _______, _______, _______, KC_NUHS, KC_NUBS, XXXXXXX, KC_PGUP, KC_ENT,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END
+        _______ , _______,  _______,   SS_FUL,  SS_SEL, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
+        KC_LSFT, _______,  _______,   _______,  _______, _______, _______, KC_NUHS, KC_NUBS, XXXXXXX, _______, KC_ENT,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
     /* LOWER
     * ,-----------------------------------------------------------------------------------.
     * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |      |   _  |   +  |   {  |   }  |  |   |
+    * |      |  F1  |  F2  |  F3  |  F4  |  F5  |      |   _  |   +  |   {  |   }  |  |   |
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * |LShift|  F6  |  F7  |  F8  |  F9  |  F10 |      |ISO ~ |ISO | | NULL | PgUp | Enter|
     * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -150,27 +151,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
     [_LOWER] = LAYOUT_planck_grid(
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL ,
-        KC_DEL , KC_F1,   KC_F2,   KC_F3,    KC_F4, KC_F5,   _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+        _______ , KC_F1,   KC_F2,   KC_F3,    KC_F4, KC_F5,   _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
         KC_LSFT, KC_F6,   KC_F7,   KC_F8,    KC_F9, KC_F10,  _______, S(KC_NUHS), S(KC_NUBS), XXXXXXX, KC_PGUP, KC_ENT ,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END
     ),
 
     /* MEDIA, COMMANDS, AND CODE MACROS
     * ,-----------------------------------------------------------------------------------.
-    * | NULL | NULL | NULL | NULL | NULL | iTrm | NULL | NULL |Insert| NULL |PrntSc| NULL |›
+    * | NULL | NULL | NULL | NULL | gRes | iTrm | NULL | NULL |Insert| NULL |PrntSc| NULL |›
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * | NULL | gAdd | gStat| NULL | ()=> | NULL | NULL | NULL | NULL | NULL |PlyMc1|PlyMc2|
     * |------+------+------+------+------+------+------+------+------+------+------+------|
-    * |LShift| NULL | NULL |gComit| NULL | NULL | NULL | NULL |ZoomOu|ZoomIn| Prev |RecStp|
+    * |ONESHT| NULL | NULL |gComit| NULL | NULL | NULL | NULL |ZoomOu|ZoomIn| Prev |RecStp|
     * |------+------+------+------+------+-------------+------+------+------+------+------|
-    * |ONESHT| NULL | NULL |      | Vol- |     Mute    | Vol+ |Zoom 0| Stop | Next | Play |
+    * |      | NULL | NULL |      | Vol- |     Mute    | Vol+ |Zoom 0| Stop | Next | Play |
     * `-----------------------------------------------------------------------------------'
     */
     [_MEDIA] = LAYOUT_planck_grid(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ITERM, XXXXXXX, XXXXXXX, KC_INS,   XXXXXXX, KC_PSCR, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GIT_RESET, ITERM, XXXXXXX, XXXXXXX, KC_INS,   XXXXXXX, KC_PSCR, XXXXXXX,
         XXXXXXX, GIT_ADD, GIT_STATUS, XXXXXXX, CODE_ARROWFN, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,  XXXXXXX, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2,
-        KC_LSFT, XXXXXXX, XXXXXXX, GIT_COMMIT, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
-        ONESHOT, XXXXXXX, XXXXXXX, _______, KC_VOLD, KC_MUTE, KC_MUTE,  KC_VOLU, ZOOM_NML, KC_MSTP, KC_MNXT, KC_MPLY
+        ONESHOT, XXXXXXX, XXXXXXX, GIT_COMMIT, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
+        _______, XXXXXXX, XXXXXXX, _______, KC_VOLD, KC_MUTE, KC_MUTE,  KC_VOLU, ZOOM_NML, KC_MSTP, KC_MNXT, KC_MPLY
     ),
 
     /* ONESHOT
@@ -335,7 +336,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-
+        case GIT_RESET:
+            if (record->event.pressed) {
+                 SEND_STRING("git reset HEAD");
+            }
+            return false;
+            break;
     }
     return true;
 }
