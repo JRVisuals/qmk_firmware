@@ -75,13 +75,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |*Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |  Up  |SftEnt|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
-     * | Mute | Ctrl |  Alt |  GUI | Lower|    Space    | Raise|   /  | Left | Down | Right|
+     * | Ctrl |  Alt |  GUI | MEDIA| Lower|    Space    | Raise|   /  | Left | Down | Right|
      * `-----------------------------------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT_planck_grid(KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
          KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
          SFT_CAP, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_UP, SFT_ENT,
-         MEDIA, KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC, RAISE, KC_SLSH, KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LALT, KC_LGUI, MEDIA, LOWER, KC_SPC, KC_SPC, RAISE, KC_SLSH, KC_LEFT, KC_DOWN, KC_RGHT),
 
 
     /* NUMPAD
@@ -200,14 +200,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+------+------+------+------+------+------+------+------|
     * | NULL | NULL | NULL |AudOff|MusOff|QWERTY|NUMPAD|Mus On|Aud On| NULL |Voice+|SysReq|
     * |------+------+------+------+------+-------------+------+------+------+------+------|
-    * | Reset| NULL | LOCK | NULL |      |     NULL    |      | NULL |AGNorm|Voice-|AGSwap|
+    * | NULL | NULL | LOCK | Reset|      |     NULL    |      | NULL |AGNorm|Voice-|AGSwap|
     * `-----------------------------------------------------------------------------------'
     */
     [_FUNCTN] = LAYOUT_planck_grid(
         KC_SLEP, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, CK_TOGG, CK_UP, KC_PWR,
         KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MU_MOD,  XXXXXXX, CK_RST, CK_DOWN, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, AU_OFF,  MU_OFF,  QWERTY,  NUMPAD,  MU_ON,   AU_ON,   XXXXXXX, MUV_IN,  KC_SYSREQ,
-        RESET,   XXXXXXX, LOCK,    XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, AG_NORM, MUV_DE,  AG_SWAP
+        XXXXXXX, XXXXXXX,    LOCK,  RESET, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, AG_NORM, MUV_DE,  AG_SWAP
     )
 
     };
