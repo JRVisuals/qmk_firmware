@@ -1,4 +1,4 @@
-#include "../../config.h"
+//#include "../../config.h"
 
 #pragma once
 
@@ -43,6 +43,6 @@
 // Enable clicky sounds
 #define AUDIO_CLICKY
 
-#ifndef CONFIG_USER_H
-#    define CONFIG_USER_H
-#endif
+// #ifndef CONFIG_USER_H
+// #    define CONFIG_USER_H
+// #endif
