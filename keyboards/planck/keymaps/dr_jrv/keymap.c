@@ -68,10 +68,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT_planck_grid(
-        KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
-        KC_TAB, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
+        KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
         SFT_CAP, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, SFT_ENT,
-        MEDIA, KC_LCTL, KC_LALT, KC_LCMD, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
+        MEDIA, KC_LCTL, KC_LCMD, KC_LALT, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
         ),
 
     /* NUMPAD
@@ -95,17 +95,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------------------------------.
      * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |      | F11  | F12  |SS_FUL|SS_SEL|      |      |   -  |   =  |   [  |   ]  |  \   |
+     * |      |      |      |SS_FUL|SS_SEL|      |      |   -  |   =  |   [  |   ]  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |LShift|      |      |      |      |      |      |ISO # |ISO / | NULL |      | Enter|
+     * |LShift|      |      |      |      |      |      |ISO # |ISO / | NULL |   |  | Enter|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
-     * |      |      |      |      |      |             |      |      |      |      |       |
+     * |      |      |      |      |      |             |      |      |      |      |      |
      * `-----------------------------------------------------------------------------------'
      */
     [_RAISE] = LAYOUT_planck_grid(
         KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
-    _______, KC_F11, KC_F12, SS_FUL, SS_SEL, _______, _______, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_LSFT,
-    _______, _______, _______, _______, _______, _______, KC_NUHS, KC_NUBS, XXXXXXX, _______, KC_ENT,
+    _______, _______, _______, SS_FUL, SS_SEL, _______, _______, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,
+    KC_LSFT, _______, _______, _______, _______, _______, _______, KC_NUHS, KC_NUBS, XXXXXXX, KC_PIPE, KC_ENT,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -113,17 +113,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------------------------------.
      * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |DelWrd|
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |      |  F1  |  F2  |  F3  |  F4  |  F5  |      |   _  |   +  |   {  |   }  |  |   |
+     * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  |   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |LShift|  F6  |  F7  |  F8  |  F9  |  F10 |      |ISO ~ |ISO | | NULL | PgUp | Enter|
+     * |LShift|  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   =  |   >  | NULL |   \  | Enter|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
-     * |      |      |      |      |      |             |      |      | Home | PgDn |  End |
+     * |      |      |      |      |      |             |      | Home | PgDn | PgUp |  End |
      * `-----------------------------------------------------------------------------------'
      */
     [_LOWER] = LAYOUT_planck_grid(
         KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, LALT(KC_BSPC),
-        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-        KC_LSFT, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______, S(KC_NUHS), S(KC_NUBS), XXXXXXX, XXXXXXX, KC_ENT,
+        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+        KC_LSFT, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_EQL, KC_GT, XXXXXXX, KC_BSLS, KC_ENT,
         _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
         ),
 
@@ -157,9 +157,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_MEDIA] = LAYOUT_planck_grid(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GIT_RESET, ITERM, XXXXXXX, XXXXXXX, KC_INS, XXXXXXX, KC_PSCR, XXXXXXX,
+        ONESHOT, XXXXXXX, XXXXXXX, XXXXXXX, GIT_RESET, ITERM, XXXXXXX, XXXXXXX, KC_INS, XXXXXXX, KC_PSCR, XXXXXXX,
         XXXXXXX, GIT_ADD, GIT_STATUS, XXXXXXX, CODE_ARROWFN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2,
-        ONESHOT, XXXXXXX, XXXXXXX, GIT_COMMIT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
+        XXXXXXX, XXXXXXX, XXXXXXX, GIT_COMMIT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
         _______, XXXXXXX, XXXXXXX, _______, KC_VOLD, KC_MUTE, KC_MUTE, KC_VOLU, ZOOM_NML, KC_MSTP, KC_MNXT, KC_MPLY
         ),
 
@@ -315,7 +315,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case CODE_ARROWFN:
             if (record->event.pressed) {
-                SEND_STRING("()=>{};" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+                SEND_STRING("=()=>{};" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
             }
             return false;
             break;

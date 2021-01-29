@@ -1,5 +1,5 @@
 # JRVisuals Layout - based on Dr NotSoKind's layout which is based on the Circuit layout
-
+# make planck/rev6:dr_jrv:dfu-util  
 I love some features from the default layout, although there are things that definitively I can't get used to. Other layouts such as *circuit* gave me some good ideas, so I combined them all plus some own stuff to fit better my needs.
 
 BTW, I don't use Dvorak or other layouts than QWERTY and I'm too old and grumpy for learning something new (I'm lying a bit here, I learn new stuff every day), so I removed the ther typing layouts
