@@ -17,10 +17,11 @@ enum planck_keycodes {
     ADJUST,
     MEDIA,
     ONESHOT,
-    SPACEFN,
+    // SPACEFN,
     DYNAMIC_MACRO_RANGE,
     // Custom Code Macros
     CODE_ARROWFN,
+    CODE_ARROW,
     GIT_ADD,
     GIT_COMMIT,
     GIT_STATUS,
@@ -30,7 +31,7 @@ enum planck_keycodes {
 #include "dynamic_macro.h"
 
 // Key code names
-#define SPACEFN LT(_SPACEFN, KC_SPC)  // Tap for space, hold for space function layer
+// #define SPACEFN LT(_SPACEFN, KC_SPC)  // Tap for space, hold for space function layer
 #define SFT_ENT MT(MOD_RSFT, KC_ENT)  // Tap for enter, hold for right shift
 //#define LOCK     TG(_LOCKED)
 #define KC_PSTE KC_PASTE
@@ -64,14 +65,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |*Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |SftEnt|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
-     * |  FN  | Ctrl |  Alt |  CMD | Lower|    Space    | Raise| Left | Down |  Up  | Right|
+     * |  FN  | Ctrl |  Alt |  CMD | Lower|    SpaceFN    | Raise| Left | Down |  Up  | Right|
      * `-----------------------------------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT_planck_grid(
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
         KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
         SFT_CAP, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, SFT_ENT,
-        MEDIA, KC_LCTL, KC_LCMD, KC_LALT, LOWER, KC_SPC, KC_SPC, RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
+        MEDIA, KC_LCTL, KC_LALT, KC_LCMD, LOWER, LT(_SPACEFN, KC_SPC), LT(_SPACEFN, KC_SPC), RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
         ),
 
     /* NUMPAD
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------------------------------.
      * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |      |      |      |SS_FUL|SS_SEL|      |      |   -  |   =  |   [  |   ]  |  \   |
+     * |      |      |      |SS_FUL|SS_SEL|      |   _  |   -  |   =  |   [  |   ]  |  \   |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * |LShift|      |      |      |      |      |      |ISO # |ISO / | NULL |   |  | Enter|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -104,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_planck_grid(
         KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
-    _______, _______, _______, SS_FUL, SS_SEL, _______, _______, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,
+    _______, _______, _______, SS_FUL, SS_SEL, _______, KC_UNDS, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,
     KC_LSFT, _______, _______, _______, _______, _______, _______, KC_NUHS, KC_NUBS, XXXXXXX, KC_PIPE, KC_ENT,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -129,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* ADJUST (Raise and Lower)
      * ,-----------------------------------------------------------------------------------.
-     * | SLEEP| RGB  |RGBMOD| HUE+ | HUE- | SAT+ | SAT- |BRGTH+|BRGTH-| CTog | CUp  | POWER|
+     * |      | M b2 | M up | M b1 | M b2 | SAT+ | SAT- |BRGTH+|BRGTH-| CTog | CUp  | POWER|
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | WAKE | NULL | NULL | NULL | NULL | NULL | NULL | MMod | NULL | CRes | CDn  | NULL |
+     * |      | M lf | M dn | M rt |RGBMOD| HUE+ | HUE- | MMod | NULL | CRes | CDn  | NULL |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | NULL | NULL | NULL |AudOff|MusOff|QWERTY|NUMPAD|Mus On|Aud On| NULL |Voice+|SysReq|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -139,27 +140,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------------------------------'
      */
     [_ADJUST] = LAYOUT_planck_grid(
-        KC_SLEP, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, CK_TOGG, CK_UP, KC_PWR,
-        KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MU_MOD, XXXXXXX, CK_RST, CK_DOWN, XXXXXXX,
+        XXXXXXX, KC_MS_BTN2, KC_MS_U, KC_MS_BTN1, KC_MS_BTN2, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, CK_TOGG, CK_UP, KC_PWR,
+        XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, RGB_MOD, RGB_HUI, RGB_HUD, MU_MOD, XXXXXXX, CK_RST, CK_DOWN, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, AU_OFF, MU_OFF, QWERTY, NUMPAD, MU_ON, AU_ON, XXXXXXX, MUV_IN, KC_SYSREQ,
-        XXXXXXX, XXXXXXX, XXXXXXX, RESET, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, AG_NORM, MUV_DE, AG_SWAP
+        XXXXXXX, XXXXXXX, XXXXXXX, RESET, _______, ITERM, ITERM, _______, XXXXXXX, AG_NORM, MUV_DE, AG_SWAP
         ),
 
     /* MEDIA, COMMANDS, AND CODE MACROS
      * ,-----------------------------------------------------------------------------------.
-     * | NULL | NULL | NULL | NULL | gRes | iTrm | NULL | NULL |Insert| NULL |PrntSc| NULL |›
+     * |      | NULL | NULL | NULL | gRes |   (  |  )   |      |Insert| NULL |PrntSc| iTrm |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * | NULL | gAdd | gStat| NULL | ()=> | NULL | NULL | NULL | NULL | NULL |PlyMc1|PlyMc2|
+     * |      | gAdd | gStat| NULL | ()=> |   [  |  ]   | ()=> | NULL | NULL |PlyMc1|PlyMc2|
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |ONESHT| NULL | NULL |gComit| NULL | NULL | NULL | NULL |ZoomOu|ZoomIn| Prev |RecStp|
+     * |ONESHT| NULL | NULL |gComit|   <  |   {  |  }   |  >   |ZoomOu|ZoomIn| Prev |RecStp|
      * |------+------+------+------+------+-------------+------+------+------+------+------|
      * |      | NULL | NULL |      | Vol- |     Mute    | Vol+ |Zoom 0| Stop | Next | Play |
      * `-----------------------------------------------------------------------------------'
      */
     [_MEDIA] = LAYOUT_planck_grid(
-        ONESHOT, XXXXXXX, XXXXXXX, XXXXXXX, GIT_RESET, ITERM, XXXXXXX, XXXXXXX, KC_INS, XXXXXXX, KC_PSCR, XXXXXXX,
-        XXXXXXX, GIT_ADD, GIT_STATUS, XXXXXXX, CODE_ARROWFN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2,
-        XXXXXXX, XXXXXXX, XXXXXXX, GIT_COMMIT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, GIT_RESET, KC_LPRN, KC_RPRN, XXXXXXX, KC_INS, XXXXXXX, KC_PSCR, ITERM,
+        _______, GIT_ADD, GIT_STATUS, XXXXXXX, CODE_ARROWFN, KC_LBRC, KC_RBRC, CODE_ARROW, XXXXXXX, XXXXXXX, DYN_MACRO_PLAY1, DYN_MACRO_PLAY2,
+        XXXXXXX, XXXXXXX, XXXXXXX, GIT_COMMIT,KC_LT, KC_LCBR, KC_RCBR, KC_GT, ZOOM_OUT, ZOOM_IN, KC_MPRV, DYN_REC_STOP,
         _______, XXXXXXX, XXXXXXX, _______, KC_VOLD, KC_MUTE, KC_MUTE, KC_VOLU, ZOOM_NML, KC_MSTP, KC_MNXT, KC_MPLY
         ),
 
@@ -183,22 +184,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* SPACE FN
      * ,-----------------------------------------------------------------------------------.
-     * |PRNT SC|      |  UP  |      |      |      |      |      |  UP  |      |      |SLEEP |
+     * |  NULL | NULL |   |  |   -  |   _  |  =   |   =  |   _  |   -  |   |  | NULL | NULL |
      * |-------+------+------+------+------+-------------+------+------+------+------+------|
-     * |       | LEFT | DOWN | RIGHT|      |      |      | LEFT | DOWN | RIGHT|      |      |
+     * |   '   |   /  |   <  |   {  |   [  |   (  |   )  |   ]  |   }  |   >  |   \  |  '   |
      * |-------+------+------+------+------+------|------+------+------+------+------+------|
-     * |       |   ~  |   #  |   /  |   {  |   [  |   ]  |   }  |   \  |   -  |   =  |  |   |
+     * |  NULL |   ;  |   .  |   ,  | NULL | NULL | NULL | NULL |   ,  |   .  |   ;  | NULL |
      * |-------+------+------+------+------+------+------+------+------+------+------+------|
-     * |       |      |      |      |      |             |      | MUTE |VOLDWN|VOL UP|      |
+     * |  NULL | NULL | NULL | NULL | NULL |             | NULL | NULL | NULL | NULL | NULL |
      * `-----------------------------------------------------------------------------------'
      */
     [_SPACEFN] = LAYOUT_planck_grid(
-        KC_PSCR, XXXXXXX, XXXXXXX, KC_UP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_UP, XXXXXXX, XXXXXXX, KC_SLEP,
-        XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX,
-        XXXXXXX, KC_TILD, KC_NUHS, KC_SLSH, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, KC_BSLS, KC_MINS, KC_EQL, KC_PIPE,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, KC__MUTE, KC__VOLDOWN, KC__VOLUP, XXXXXXX
+        XXXXXXX, XXXXXXX, KC_PIPE, KC_MINS, KC_UNDS, KC_EQL , KC_EQL , KC_UNDS, KC_MINS, KC_PIPE, XXXXXXX, XXXXXXX,
+        KC_QUOT, KC_SLSH, KC_LT  , KC_LCBR, KC_LBRC, KC_LPRN, KC_RPRN, KC_RBRC, KC_RCBR, KC_GT  , KC_BSLS, KC_QUOT,
+        XXXXXXX, KC_SCLN, KC_PDOT, KC_COMM, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_PDOT, KC_SCLN, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-
 };
 
 #ifdef AUDIO_ENABLE
@@ -210,6 +210,8 @@ float tone_dyn_macro_rec[][2]  = SONG(SONIC_RING);
 float tone_dyn_macro_stop[][2] = SONG(SONIC_RING);
 float music_scale[][2]         = SONG(MUSIC_SCALE_SOUND);
 float tone_goodbye[][2]        = SONG(GOODBYE_SOUND);
+float caps_song_on[][2]        = SONG(NUM_LOCK_ON_SOUND);
+float caps_song_off[][2]     = SONG(SCROLL_LOCK_ON_SOUND);
 #endif
 
 void press_key(uint16_t key) {
@@ -304,18 +306,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case SPACEFN:
-            if (record->event.pressed) {
-                rgblight_sethsv(rgblight_get_hue(), rgblight_get_sat(), 255);
 
-            } else {
-                rgblight_sethsv(rgblight_get_hue(), rgblight_get_sat(), 128);
-            }
-            return false;
-            break;
+
+        case KC_CAPS:
+		if (record->event.pressed) {
+			#ifdef AUDIO_ENABLE
+			if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+				PLAY_SONG(caps_song_off);
+			} else {
+				PLAY_SONG(caps_song_on);
+			}
+			#endif
+		}
+		return true;
+
         case CODE_ARROWFN:
             if (record->event.pressed) {
                 SEND_STRING("=()=>{};" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+            }
+            return false;
+            break;
+
+        case CODE_ARROW:
+            if (record->event.pressed) {
+                SEND_STRING("()=>");
             }
             return false;
             break;
