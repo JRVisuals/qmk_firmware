@@ -339,12 +339,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case CODE_ARROW:
-            if (record->event.pressed) {
-                SEND_STRING("=> ");
-            }
-            return false;
-            break;
 
         case GIT_ADD:
             if (record->event.pressed) {
