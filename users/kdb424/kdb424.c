@@ -25,8 +25,9 @@ enum custom_keycodes {
 #    include "combos.c"
 #endif // COMBOS_ENABLE
 
-#include <stdbool.h>
-#include QMK_KEYBOARD_H // Needed for macros
+#ifdef REFLASH_MACRO
+#    include <stdbool.h>
+#    include QMK_KEYBOARD_H // Needed for macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
     }
@@ -45,6 +46,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+#endif
 
 #ifndef NO_ACTION_ONESHOT
 #    define OS_LSFT OSM(MOD_LSFT)
