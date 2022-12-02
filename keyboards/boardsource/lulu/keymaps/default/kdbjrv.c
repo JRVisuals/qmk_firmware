@@ -1,8 +1,5 @@
 #pragma once
 
-#define _QWERTY 0
-#define _GAMING 1
-#define _RAISE1 2
 
 #define REPROGR REPROGRAM_MACRO
 #define LT1_SP LT(_RAISE1, KC_SPC)
