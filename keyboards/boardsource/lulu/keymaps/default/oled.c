@@ -1,5 +1,7 @@
 #include <stdio.h>
-
+#include "layers.h"
+#include "oled.h"
+#include "time.h"
 
 
 void render_layer1_logo(void){
@@ -191,6 +193,7 @@ uint8_t  current_idle_frame = 0;
 uint8_t current_tap_frame = 0;
 
 char wpm_str[10];
+char time_str[38];
 
 // Code containing pixel art, contains:
 // 5 idle frames, 1 prep frame, and 2 tap frames
@@ -271,7 +274,7 @@ static void render_anim(void) {
 }
 
 
-void render_secondary(void) {
+void render_skeleton(void) {
     static const char PROGMEM logo[] = {// 'skeleton', 128x32px
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -313,19 +316,46 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
   if (is_keyboard_master()) {
     return OLED_ROTATION_180;
   }
+  //return OLED_ROTATION_270;
   return rotation;
 }
 #endif
+
+void render_layer_name(void) {
+    bool lower = layer_state_is(_LOWER) & !layer_state_is(_ADJUST);
+    bool raise = layer_state_is(_RAISE) & !layer_state_is(_ADJUST);
+    bool adjust = layer_state_is(_ADJUST);
+    bool space = layer_state_is(_SPACEFN);
+    bool game = layer_state_is(_GAMING);
+
+    if(lower){
+        oled_write("LOWER", false);
+    } else if(raise){
+        oled_write("RAISE", false);
+    } else if(adjust){
+        oled_write(" ADJ ", false);
+    } else if(space){
+        oled_write("SPACE", false);
+    } else if(game){
+        oled_write("GAME", false);
+    } else {
+        oled_write("QWRTY", false);
+    }
+
+}
+
 // Used to draw on to the oled screen
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_anim(); // renders pixelart
 
         oled_set_cursor(0, 0);                           // sets cursor to (row, column) using charactar spacing (5 rows on 128x32 screen, anything more will overflow back to the top)
-        sprintf(wpm_str, "WPM:%03d", get_current_wpm()); // edit the string to change wwhat shows up, edit %03d to change how many digits show up
-        oled_write(wpm_str, false);                      // writes wpm on top left corner of string
+     //   sprintf(wpm_str, "%03d\n", get_current_wpm()); // edit the string to change wwhat shows up, edit %03d to change how many digits show up
+     //   oled_write(wpm_str, false);
+        render_layer_name(); // writes wpm on top left corner of string
     } else {
-        render_secondary();
+        render_skeleton();
+       // process_layer_state();
     }
 
     return false;

@@ -2,21 +2,21 @@
 
 
 #define REPROGR REPROGRAM_MACRO
-#define LT1_SP LT(_RAISE1, KC_SPC)
-#define LT2_SP LT(_RAISE2, KC_SPC)
-#define TAB_SB LT(_SYMBOLS, KC_TAB)
-#define SUPER_L LM(_GUI, MOD_LGUI)
+#define LT1_SP LT(_RAISE, KC_SPC)
+#define LT2_SP LT(_LOWER, KC_SPC)
+#define TAB_SB LT(_SPACEFN, KC_TAB)
+#define SUPER_L LM(_ADJUST, MOD_LGUI)
 
-enum custom_keycodes {
-    QWERTY,
-    PLOVER,
-    RAISE1,
-    RAISE2,
-    GUI,
-    SYMBOLS,
-    GAMING,
-    REPROGRAM_MACRO,
-};
+// enum custom_keycodes {
+//     QWERTY,
+//     RAISE,
+//     LOWER,
+//     ADJUST,
+//     SPACEFN,
+//     GAMING,
+//     REPROGRAM_MACRO,
+// };
+
 
 #ifdef COMBO_ENABLE
 #    include "combos.c"
