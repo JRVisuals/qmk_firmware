@@ -1,7 +1,7 @@
 #pragma once
 
-#define MASTER_LEFT // Left side is the master
-#define SPLIT_LAYER_STATE_ENABLE // doesn't seem to work on lulu
+#define MASTER_LEFT // Left side is the main
+#define SPLIT_LAYER_STATE_ENABLE // Share layer state between sides
 
 /* Set Polling rate to 1000Hz */
 #define USB_POLLING_INTERVAL_MS 1
