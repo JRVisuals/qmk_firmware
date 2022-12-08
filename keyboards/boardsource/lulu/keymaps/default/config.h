@@ -1,12 +1,12 @@
 #pragma once
 
 #define MASTER_LEFT // Left side is the master
-//#define SPLIT_LED_STATE_ENABLE // doesn't seem to work on lulu
+#define SPLIT_LAYER_STATE_ENABLE // doesn't seem to work on lulu
 
 /* Set Polling rate to 1000Hz */
 #define USB_POLLING_INTERVAL_MS 1
 //#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 250
+#define TAPPING_TERM 200
 
 
 /*
