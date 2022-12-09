@@ -57,33 +57,35 @@ void render_layer_name(void) {
 // BongoCat Animation
 #include "oledart-bongocat-anim.c"
 
+char rgb_str[10];
 void oled_render_rgb_mode(void) {
     oled_write_P(PSTR("-----"), false);
-    oled_write_P(PSTR("RGB"), false);
-    oled_write_ln(get_u8_str(rgb_matrix_get_mode(), ' '), false);
+    sprintf(rgb_str, "RGB %s", get_u8_str(rgb_matrix_get_mode(), ' '));
+    oled_write_ln(rgb_str, false);
+    // oled_write_P(PSTR("RGB"), false);
+    // oled_write_ln(get_u8_str(rgb_matrix_get_mode(), ' '), false);
     oled_write_P(PSTR("-----\n"), false);
 }
 
 // OLED screen update
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
+
+        // Everyone loves Bongo Cat
         render_bongocat_anim();
-        //oled_set_cursor(0, 0);
-        //render_layer_name();
+
     } else {
 
-
+        // Text Readouts
         render_layer_name();
         oled_render_rgb_mode();
 
-
-
+        // Layer Logo
         render_layer_logo();
-
+        // Move cursor below the logo render
         oled_set_cursor(0,12);
-
+        // Gratuitous Animation
         render_zninit1_anim();
-        //render_layer4_logo_test();
     }
     return false;
 }
