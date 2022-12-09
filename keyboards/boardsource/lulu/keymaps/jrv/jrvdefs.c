@@ -13,10 +13,8 @@
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define SPACEFN LT(_SPACEFN, KC_SPC)  // Tap for space, hold for space function layer
-#define SPACEFN_L LT(_SPACEFN, KC_SPC)  // Tap for space, hold for space function layer
-#define SPACEFN_R LT(_SPACEFN, KC_SPC)  // Tap for space, hold for space function layer
 #define SFT_ENT MT(MOD_RSFT, KC_ENT)  // Tap for enter, hold for right shift
-//#define LOCK     TG(_LOCKED)
+#define LOCK     TG(_LOCKED)
 #define KC_PSTE KC_PASTE
 #define ZOOM_IN LGUI(KC_PPLS)
 #define ZOOM_OUT LGUI(KC_MINS)

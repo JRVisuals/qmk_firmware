@@ -3,7 +3,7 @@
 
 // 32X128 / Vertical / plain bytes / must be rotated 270' / 8 lines for each 32 vertical pixels
 
-void render_layer1_logo(void){
+void render_layer1_logo_key(void){
     static const char PROGMEM layer_logo[] = {
 // 'keeb-oled-anims_01', 32x128px
 0x00, 0x00, 0x00, 0x00, 0xe0, 0x10, 0x08, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
@@ -18,7 +18,7 @@ void render_layer1_logo(void){
   oled_write_raw_P(layer_logo, sizeof(layer_logo));
 }
 
-void render_layer2_logo(void){
+void render_layer2_logo_key(void){
     static const char PROGMEM layer_logo[] = {
 // 'keeb-oled-anims_02', 32x128px
 0x00, 0x00, 0x00, 0x00, 0xc0, 0x20, 0x10, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
@@ -33,7 +33,7 @@ void render_layer2_logo(void){
     oled_write_raw_P(layer_logo, sizeof(layer_logo));
 }
 
-void render_layer3_logo(void){
+void render_layer3_logo_key(void){
     static const char PROGMEM layer_logo[] = {
 // 'keeb-oled-anims_03', 32x128px
 0x00, 0x00, 0x00, 0x00, 0x80, 0x40, 0x20, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10,
@@ -48,7 +48,7 @@ void render_layer3_logo(void){
     oled_write_raw_P(layer_logo, sizeof(layer_logo));
 }
 
-void render_layer4_logo(void){
+void render_layer4_logo_key(void){
     static const char PROGMEM layer_logo[] = {
 // 'keeb-oled-anims_04', 32x128px
 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x40, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20,

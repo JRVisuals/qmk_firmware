@@ -15,23 +15,22 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
 
 // Reactive Layer Display
 //#include "oledart-default-layers.c" // default gearshift layer logos
-#include "oledart-jrv-key-layers.c" // WIP JRV keycap layer logos
-
 //#include "oledart-jrv-zninit1-anim.c" // WIP JRV zninit animation 1
 
+#include "oledart-jrv-key-layers.c" // WIP JRV keycap layer logos
 void render_layer_logo(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
-            render_layer1_logo();
+            render_layer1_logo_key();
             break;
         case 1:
-            render_layer2_logo();
+            render_layer2_logo_key();
             break;
         case 2:
-            render_layer3_logo();
+            render_layer3_logo_key();
             break;
         case 3:
-            render_layer4_logo();
+            render_layer4_logo_key();
             break;
     }
 }
