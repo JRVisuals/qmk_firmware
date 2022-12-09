@@ -51,7 +51,7 @@ static void render_zninit1_anim(void) {
 
 
     // assumes 1 frame prep stage
-    void animation_phase(void) {
+    void render_anim_frame(void) {
 
             jrv_current_idle_frame = jrv_current_idle_frame + 1;
             if(jrv_current_idle_frame>JRV_IDLE_FRAMES-1){
@@ -66,7 +66,7 @@ static void render_zninit1_anim(void) {
         oled_on(); // not essential but turns on animation OLED with any alpha keypress
         if (timer_elapsed32(jrv_anim_timer) > JRV_ANIM_FRAME_DURATION) {
             jrv_anim_timer = timer_read32();
-            animation_phase();
+            render_anim_frame();
         }
         jrv_anim_sleep = timer_read32();
     } else {
@@ -75,7 +75,7 @@ static void render_zninit1_anim(void) {
         } else {
             if (timer_elapsed32(jrv_anim_timer) > JRV_ANIM_FRAME_DURATION) {
                 jrv_anim_timer = timer_read32();
-                animation_phase();
+                render_anim_frame();
             }
         }
     }

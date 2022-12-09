@@ -1,7 +1,8 @@
 #pragma once
 
 #define MASTER_LEFT // Left side is the main
-#define SPLIT_LAYER_STATE_ENABLE // Allows both oleds to react to layer info
+#define SPLIT_LAYER_STATE_ENABLE // Allows both sides to react to LAYER info
+#define SPLIT_WPM_ENABLE // Allows both sides to react to WPM info (used to wake up oled)
 
 /* Set Polling rate to 1000Hz */
 #define USB_POLLING_INTERVAL_MS 1
