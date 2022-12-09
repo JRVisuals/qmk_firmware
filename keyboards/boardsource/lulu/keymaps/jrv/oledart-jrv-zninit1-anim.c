@@ -57,7 +57,7 @@ static void render_zninit1_anim(void) {
             if(jrv_current_idle_frame>JRV_IDLE_FRAMES-1){
                 jrv_current_idle_frame = 0;
             }
-            oled_write_P(idle[abs(jrv_current_idle_frame)], JRV_ANIM_SIZE);
+            oled_write_raw_P(idle[abs(jrv_current_idle_frame)], JRV_ANIM_SIZE);
 
     }
 

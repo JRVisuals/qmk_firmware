@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "layers.h"
 #include "oled.h"
 
 // Set Rotations
@@ -15,12 +14,12 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
 
 // Reactive Layer Display
 //#include "oledart-default-layers.c" // default gearshift layer logos
-//#include "oledart-jrv-zninit1-anim.c" // WIP JRV zninit animation 1
-
+#include "oledart-jrv-zninit1-anim.c" // WIP JRV zninit animation 1
 #include "oledart-jrv-key-layers.c" // WIP JRV keycap layer logos
 void render_layer_logo(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
+
             render_layer1_logo_key();
             break;
         case 1:
@@ -58,7 +57,12 @@ void render_layer_name(void) {
 // BongoCat Animation
 #include "oledart-bongocat-anim.c"
 
-
+void oled_render_rgb_mode(void) {
+    oled_write_P(PSTR("-----"), false);
+    oled_write_P(PSTR("RGB"), false);
+    oled_write_ln(get_u8_str(rgb_matrix_get_mode(), ' '), false);
+    oled_write_P(PSTR("-----\n"), false);
+}
 
 // OLED screen update
 bool oled_task_user(void) {
@@ -68,10 +72,18 @@ bool oled_task_user(void) {
         //render_layer_name();
     } else {
 
-        oled_set_cursor(0,0);
+
         render_layer_name();
+        oled_render_rgb_mode();
+
+
+
         render_layer_logo();
-      //  render_zninit1_anim();
+
+        oled_set_cursor(0,12);
+
+        render_zninit1_anim();
+        //render_layer4_logo_test();
     }
     return false;
 }
