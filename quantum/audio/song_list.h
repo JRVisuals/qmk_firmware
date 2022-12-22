@@ -20,11 +20,9 @@
 
 #include "musical_notes.h"
 
-#if __GNUC__ > 5  // don't use for older gcc compilers since check isn't supported.
-#    if __has_include("user_song_list.h")
-#        include "user_song_list.h"
-#    endif  // if file exists
-#endif      // __GNUC__
+#if __has_include("user_song_list.h")
+#    include "user_song_list.h"
+#endif // if file exists
 
 #define NO_SOUND
 
@@ -146,6 +144,7 @@
  */
 #define USSR_ANTHEM B__NOTE(_G6), B__NOTE(_C7), W__NOTE(_G6), H__NOTE(_A6), B__NOTE(_B6), W__NOTE(_E6), W__NOTE(_E6), B__NOTE(_A6), W__NOTE(_G6), H__NOTE(_F6), B__NOTE(_G6), W__NOTE(_C6), W__NOTE(_C6), B__NOTE(_D6), W__NOTE(_D6), W__NOTE(_E6), B__NOTE(_D6), W__NOTE(_D6), W__NOTE(_G6), B__NOTE(_F6), W__NOTE(_G6), W__NOTE(_A6), B__NOTE(_B6),
 
+<<<<<<< HEAD
 // Putting some illegal songs back in
 #define TO_BOLDLY_GO W__NOTE(_BF3), Q__NOTE(_EF4), WD_NOTE(_AF4), W__NOTE(_REST), H__NOTE(_G4), Q__NOTE(_EF4), H__NOTE(_C4), W__NOTE(_REST), QD_NOTE(_F4), M__NOTE(_BF4, 128),
 
@@ -170,6 +169,13 @@
 #define ZELDA_PUZZLE Q__NOTE(_G5), Q__NOTE(_FS5), Q__NOTE(_DS5), Q__NOTE(_A4), Q__NOTE(_GS4), Q__NOTE(_E5), Q__NOTE(_GS5), HD_NOTE(_C6),
 
 #define ZELDA_TREASURE Q__NOTE(_A4), Q__NOTE(_AS4), Q__NOTE(_B4), HD_NOTE(_C5),
+=======
+/* Title:            Hymn Risen
+ * Author/Composer:  Terrance Andrew Davis
+ * License:          Public Domain
+ */
+#define TOS_HYMN_RISEN H__NOTE(_D5), H__NOTE(_E5), HD_NOTE(_F5), HD_NOTE(_F5), H__NOTE(_F5), HD_NOTE(_D5), E__NOTE(_E5), E__NOTE(_E5), H__NOTE(_C5), Q__NOTE(_D5), Q__NOTE(_D5), H__NOTE(_E5), H__NOTE(_C5), Q__NOTE(_G5), Q__NOTE(_F5), H__NOTE(_D5), H__NOTE(_E5), HD_NOTE(_F5), HD_NOTE(_F5), H__NOTE(_F5), HD_NOTE(_D5), E__NOTE(_E5), E__NOTE(_E5), H__NOTE(_C5), Q__NOTE(_D5), Q__NOTE(_D5), H__NOTE(_E5), H__NOTE(_C5), Q__NOTE(_G5), Q__NOTE(_F5), H__NOTE(_D5), H__NOTE(_C5), W__NOTE(_D5), W__NOTE(_E5), Q__NOTE(_A4), H__NOTE(_A4), Q__NOTE(_E5), Q__NOTE(_E5), Q__NOTE(_F5), Q__NOTE(_E5), Q__NOTE(_D5), Q__NOTE(_G5), Q__NOTE(_B4), Q__NOTE(_D5), Q__NOTE(_C5), M__NOTE(_F5, 80), H__NOTE(_D5), H__NOTE(_C5), W__NOTE(_D5), W__NOTE(_E5), Q__NOTE(_A4), H__NOTE(_A4), Q__NOTE(_E5), Q__NOTE(_E5), Q__NOTE(_F5), Q__NOTE(_E5), Q__NOTE(_D5), Q__NOTE(_G5), Q__NOTE(_B4), Q__NOTE(_D5), Q__NOTE(_C5), M__NOTE(_F5, 80)
+>>>>>>> master
 
 /* Removed sounds
  +   This list is here solely for compatibility, so that removed songs don't just break things

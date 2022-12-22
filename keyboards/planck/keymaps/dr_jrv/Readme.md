@@ -1,19 +1,38 @@
 # JRVisuals Layout - based on Dr NotSoKind's layout which is based on the Circuit layout
+<<<<<<< HEAD
 # make planck/rev6:dr_jrv:dfu-util  
 I love some features from the default layout, although there are things that definitively I can't get used to. Other layouts such as *circuit* gave me some good ideas, so I combined them all plus some own stuff to fit better my needs.
+=======
+
+# make planck/rev6:dr_jrv:dfu-util
+
+I love some features from the default layout, although there are things that definitively I can't get used to. Other layouts such as _circuit_ gave me some good ideas, so I combined them all plus some own stuff to fit better my needs.
+>>>>>>> master
 
 BTW, I don't use Dvorak or other layouts than QWERTY and I'm too old and grumpy for learning something new (I'm lying a bit here, I learn new stuff every day), so I removed the ther typing layouts
 
 ## Things I love about the default layout
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 1. I love the consistency between the raise and lower layers, like one is the shifted version of the other.
 2. I like the F keys distributed in two rows, from F1 to F6 and F7 to F12, which makes them easier to find and access.
 
 ## Things I don't like from the default layout
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 1. Arrow keys distributed VIM like. I use VIM frequently, but there I navigate using HJKL. Moving to the arrows intituively I tend to expect three arrows on the bottom (left, down, right) and one up in the middle (up).
 2. Tab and Esc. I switched them.
 3. Alt and Super. Switched them too.
 
 ## Needs, changes and goals
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 1. Arrow keys distributed "traditionally".
 2. Media keys easily accessible.
 3. A button for Sleep/Power.
@@ -38,7 +57,11 @@ That was a hard decision. I wanted the vol up, down and mute easily accessible, 
 
 Using the [MEDIA] modifier you can zoom in and zoom out in browsers and other applications using `,` (for zooming out) and `.` (for zooming in). These keys are mapped to `LCTRL -` and `LCTRL =`. I initially thought about mapping zoom in to `LCTRL +` but most apps also map the zoom in using the `=` key, and some they don't event support zooming in with `+` (I'm looking at you Sublime Text).
 
+<<<<<<< HEAD
 * JRV Modified this to be Mac-centric where CMD + and CMD - are generally mapped to the zooms
+=======
+-   JRV Modified this to be Mac-centric where CMD + and CMD - are generally mapped to the zooms
+>>>>>>> master
 
 ### Right Shift and Enter
 
@@ -56,8 +79,13 @@ A normal behavior for `LSHFT` key is on the same key in the [LOWER], [RAISE] and
 
 There are `UNDO`, `CUT`, `COPY`, and `PASTE` keys with the [MEDIA] modifier. This was intended to be a universal way to use these commands since in macOS cut is `⌘ + C` but in Windows it is `⌃ + C`. Unfortunately these special keys only work in Windows.
 
+<<<<<<< HEAD
 * JRV Removing these since I always use the CMD combos on Mac
 * JRV May reuse these positions for screen cap functions in the future
+=======
+-   JRV Removing these since I always use the CMD combos on Mac
+-   JRV May reuse these positions for screen cap functions in the future
+>>>>>>> master
 
 ### How to record and play dynamic Macros
 
@@ -83,7 +111,11 @@ The Lock mode toggle disables the double-tap `CAPS` and disables `GUI` keys (WIN
 
 ## Lower + Raise (adjust) Layer
 
+<<<<<<< HEAD
 Lower + Raise gives access to the layer switching, plus keyboard modes (such as enabling music mode for annoying your coworkers), reset, SysReq and Lock Mode, which disables the double shift tap for CapsLock (taken from the *circuit* layout, see the comments below). Also provides another distribution for the F keys.
+=======
+Lower + Raise gives access to the layer switching, plus keyboard modes (such as enabling music mode for annoying your coworkers), reset, SysReq and Lock Mode, which disables the double shift tap for CapsLock (taken from the _circuit_ layout, see the comments below). Also provides another distribution for the F keys.
+>>>>>>> master
 
 ![Adjust](https://i.imgur.com/6m6baos.png)
 
@@ -99,14 +131,22 @@ This layer is mostly for quick typing numbers using the numpad. You have NumLock
 
 ## Additional JRV Modifications / Additions
 
+<<<<<<< HEAD
 * MEDIA-T does CMD-LSHFT-I to toggle iTerm panel
 * Added back muse.c included in default, assuming this is needed for music but :shrug:
 * Removed this block from `keymap.c` as it was causing audio conflicts
+=======
+-   MEDIA-T does CMD-LSHFT-I to toggle iTerm panel
+-   Added back muse.c included in default, assuming this is needed for music but :shrug:
+-   Removed this block from `keymap.c` as it was causing audio conflicts
+
+>>>>>>> master
 ```
 #ifdef AUDIO_ENABLE
 #include "audio.h"
 #endif
 ```
+<<<<<<< HEAD
 * Added more music mode controls to the function layout
 * Added click sound support and controls on the function layout
 * Put RGB controls on the function layout
@@ -116,4 +156,17 @@ This layer is mostly for quick typing numbers using the numpad. You have NumLock
 * Added Mac screenshot keys to raised layer
 
 ## Updated Map
+=======
+
+-   Added more music mode controls to the function layout
+-   Added click sound support and controls on the function layout
+-   Put RGB controls on the function layout
+-   Put back some removed songs to test audio
+-   Starting to add code macros to media layer
+-   Removed F11-F20
+-   Added Mac screenshot keys to raised layer
+
+## Updated Map
+
+>>>>>>> master
 http://www.keyboard-layout-editor.com/#/gists/b1849c3de3e27b7ff62f4ed1df172baf
