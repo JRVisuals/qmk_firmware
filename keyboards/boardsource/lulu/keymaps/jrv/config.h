@@ -1,6 +1,6 @@
 #pragma once
 
-#define MASTER_LEFT // Left side is the main
+#define MASTER_RIGHT // MASTER_LEFT Left side is the main (temp switch to troubleshoot LULU)
 #define SPLIT_LAYER_STATE_ENABLE // Allows both sides to react to LAYER info
 #define SPLIT_WPM_ENABLE // Allows both sides to react to WPM info (used to wake up oled)
 
