@@ -32,6 +32,7 @@ static void __attribute__((noinline)) handleKeycodeRGB(const uint8_t is_shifted,
 }
 #endif
 
+
 /**
  * Wrapper for animation mode
  *   - if not in animation family -> jump to that animation

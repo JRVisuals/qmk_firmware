@@ -20,8 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define MANUFACTURER        "Massdrop Inc."
-#define PRODUCT             "ALT Keyboard"
 #define SERIAL_NUM          "Unavailable"
 
 /* key matrix size */
@@ -127,6 +125,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_LED_PROCESS_LIMIT 15
 #define RGB_MATRIX_LED_FLUSH_LIMIT 10
+<<<<<<< HEAD
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS 1
+=======
 // RGB Matrix Animation modes. Explicitly enabled
 // For full list of effects, see:
 // https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
@@ -176,4 +177,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
+>>>>>>> master
 #include "config_led.h"
