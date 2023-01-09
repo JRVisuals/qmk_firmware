@@ -47,7 +47,8 @@
 
 // Tap Dance Definitions
 #ifdef TAP_DANCE_ENABLE
-qk_tap_dance_action_t tap_dance_actions[] = {[0] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS), [1] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, CTRL_TAB), [2] = ACTION_TAP_DANCE_DOUBLE(CHROMEDEV, ITERM)};
+// note, this first tap_dance_action_t was qk_tap_dance_action_t but this was causing errors
+tap_dance_action_t tap_dance_actions[] = {[0] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS), [1] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, CTRL_TAB), [2] = ACTION_TAP_DANCE_DOUBLE(CHROMEDEV, ITERM)};
 #endif
 
 
