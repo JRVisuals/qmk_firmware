@@ -26,6 +26,7 @@
 #define CTRL_TAB LCTL(KC_TAB)
 #define CTRL_ESC LCTL_T(KC_ESC)
 #define CTRL_QUOT RCTL_T(KC_QUOT)
+#define GUI_ESC LGUI(KC_ESC)
 
 
 // Redundant commands on RAISE

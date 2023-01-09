@@ -19,7 +19,6 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
 void render_layer_logo(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
-
             render_layer1_logo_key();
             break;
         case 1:

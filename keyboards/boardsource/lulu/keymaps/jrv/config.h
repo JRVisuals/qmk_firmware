@@ -7,7 +7,7 @@
 /* Set Polling rate to 1000Hz */
 #define USB_POLLING_INTERVAL_MS 1
 //#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 #define IGNORE_MOD_TAP_INTERRUPT
 
 /*

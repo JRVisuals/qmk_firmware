@@ -9,4 +9,5 @@ enum custom_layers {
     _SPACEFN,
     _ADJUST,
     _GAMING,
+    _QWERTYWIN,
 };
