@@ -10,7 +10,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
             } else if(layer_state_is(_RAISE)){
                 rgblight_increase_hue();
              } else if(layer_state_is(_LOWER)){
-                rgblight_increase_val();
+                rgblight_decrease_val();
             } else {
                 tap_code(KC_VOLU);
             }
@@ -21,7 +21,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
               } else if(layer_state_is(_RAISE)){
                 rgblight_decrease_hue();
             } else if(layer_state_is(_LOWER)){
-                rgblight_decrease_val();
+                rgblight_increase_val();
             } else {
                  tap_code(KC_VOLD);
              }
