@@ -3,11 +3,11 @@
 #pragma once
 
 enum custom_layers {
-    _QWERTY,
-    _LOWER,
-    _RAISE,
-    _SPACEFN,
-    _ADJUST,
-    _GAMING,
-    _QWERTYWIN,
+    _QWERTY,    //0
+    _LOWER,     //1
+    _RAISE,     //2
+    _SPACEFN,   //3
+    _ADJUST,    //4
+    _GAMING,    //5
+    _QWERTYWIN, //6
 };

@@ -4,11 +4,11 @@
 // Set Rotations
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
-  if (is_keyboard_master()) {
-    return OLED_ROTATION_180;
-  }
+//   if (is_keyboard_master()) {
+//     return OLED_ROTATION_180;
+//   }
   return OLED_ROTATION_270;
-  return rotation;
+
 }
 #endif
 
@@ -52,13 +52,29 @@ void render_layer_name(void) {
     } else if(space){
         oled_write("SPACE\n", false);
     } else {
-        oled_write("     \n", false);
+        //oled_write("     \n", false);
+        // Print Default Layer when not in temporary mod layer
+        switch (get_highest_layer(default_layer_state)) {
+            case _QWERTY:
+                oled_write(" MAC \n", false);
+                break;
+            case _GAMING:
+                oled_write(" PEW \n", false);
+                break;
+            case _QWERTYWIN:
+                oled_write(" WIN \n", false);
+                break;
+            default:
+                oled_write("     \n", false);
+                break;
+        }
     }
 }
 
 // BongoCat Animation
 #include "oledart-bongocat-anim.c"
 
+// RGB Mode Readout
 char rgb_str[10];
 void oled_render_rgb_mode(void) {
     oled_write_P(PSTR("-----"), false);
@@ -67,6 +83,7 @@ void oled_render_rgb_mode(void) {
     oled_write_P(PSTR("-----\n"), false);
 }
 
+// Highest Layer Readout (good for debugging)
 char lay_str[10];
 void oled_render_layer(void) {
     oled_write_P(PSTR("-----"), false);
@@ -75,9 +92,18 @@ void oled_render_layer(void) {
     oled_write_P(PSTR("-----\n"), false);
 }
 
+// Current Default Layer Readout (good for debugging)
+char def_str[10];
+void oled_render_default(void) {
+    oled_write_P(PSTR("-----"), false);
+    sprintf(lay_str, "DEF %s", get_u8_str(get_highest_layer(default_layer_state), ' '));
+    oled_write_ln(lay_str, false);
+    oled_write_P(PSTR("-----\n"), false);
+}
+
 // OLED screen update
 bool oled_task_user(void) {
-    if (is_keyboard_master()) {
+    if (!is_keyboard_master()) {
 
         // Everyone loves Bongo Cat
         render_bongocat_anim();
@@ -88,6 +114,7 @@ bool oled_task_user(void) {
         render_layer_name();
         // oled_render_rgb_mode();
         oled_render_layer();
+        // oled_render_default();
 
         // Layer Logo
         render_layer_logo();

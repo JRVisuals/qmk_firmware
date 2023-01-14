@@ -31,14 +31,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   SFT_CAP ,   KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,  RGB_TOG,  RGB_TOG,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  SFT_ENT,
                             KC_LALT, KC_LGUI,   LOWER,  SPACEFN    ,  SPACEFN,      RAISE,  KC_RGUI, KC_RCTL
 ),
-/* QWERTY WINDOWS (swaps left ctrl and escape gui) */
- [_QWERTYWIN] = LAYOUT(
-  KC_GRV  ,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  KC_TAB ,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                              KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DBL_ITERM,
-  GUI_ESC,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                              KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTRL_QUOT,
-  SFT_CAP ,   KC_Z,   KC_X,    KC_C,  KC_V,    KC_B,  RGB_TOG,  RGB_TOG,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  SFT_ENT,
-                            KC_LALT, KC_LCTL,   LOWER,  SPACEFN    ,  SPACEFN,      RAISE,  KC_RGUI, KC_RCTL
-),
 
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -110,9 +102,9 @@ _______, _______, _______, _______, _______, RGB_HUI,    RGB_MOD, RGB_TOG,      
 
 /* ADJUST (LOWER&RAISE)
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      | M b2 | M up | M b1 | M b2 |      |                    |      |      |      |      |      |      |
+ * |      | M b2 | M up | M b1 | M b2 |      |                    |ToglMacWin|Norm|Swap|QWERTYwin|Gaming|QWERTYmac|
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | BOOT | M a0 | M a1 | M a2 |      |      |                    |    |   |QWERTYwin|QWERTYmac|Gaming|Mac/Win|
+ * | BOOT | M a0 | M a1 | M a2 |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | M lf | M dn | M rt |      |      |-------.    ,-------|      |      |      |      |      |      |
@@ -124,7 +116,7 @@ _______, _______, _______, _______, _______, RGB_HUI,    RGB_MOD, RGB_TOG,      
  *                          `---------------------'           '------''-------------'
  */
 [_ADJUST] = LAYOUT( \
-  QK_BOOT, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______,                     _______, _______, DF(_QWERTYWIN), DF(_QWERTY), DF(_GAMING), CG_TOGG, \
+  QK_BOOT, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______,                     CG_TOGG, CG_NORM, CG_SWAP, _______ , DF(_GAMING), DF(_QWERTY), \
   _______, KC_MS_BTN2, KC_MS_U, KC_MS_BTN1, KC_MS_BTN2, _______,            _______, _______, _______, _______, _______, _______, \
   _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,                     _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______,  QK_BOOT, QK_BOOT,  _______, _______, _______, _______, _______, _______, \
@@ -151,7 +143,32 @@ _______, _______, _______, _______, _______, RGB_HUI,    RGB_MOD, RGB_TOG,      
   KC_LSFT, _______,    _______,    _______,    _______,    _______,                     _______,    _______,    _______,    _______,    _______,    _______, \
   KC_LCTL, _______, _______,    _______,    _______,    _______, _______,  _______,  _______,    _______,    _______,    _______,    _______,    _______, \
                             KC_LALT, KC_LCTL, KC_SPC,  KC_SPC,   SPACEFN,  LOWER, RAISE, SPACEFN \
-)
+),
+
+/* QWERTY
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | TAB  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LGUIESC|   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  | CTL' |
+ * |------+------+------+------+------+------|    RGB|    |TOGGLE |------+------+------+------+------+------|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   | LAlt | LCTL |LOWER | /SpaceFN/       \SpaceFN\  |RAISE |BackSP| RGUI |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+
+/* QWERTY WINDOWS (swaps left ctrl and escape gui) */
+ [_QWERTYWIN] = LAYOUT(
+  KC_GRV  ,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  KC_TAB ,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                              KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DBL_ITERM,
+  GUI_ESC,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                              KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTRL_QUOT,
+  SFT_CAP ,   KC_Z,   KC_X,    KC_C,  KC_V,    KC_B,  RGB_TOG,  RGB_TOG,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  SFT_ENT,
+                            KC_LALT, KC_LCTL,   LOWER,  SPACEFN    ,  SPACEFN,      RAISE,  KC_RGUI, KC_RCTL
+),
+
 };
 
 /*
@@ -159,7 +176,7 @@ _______, _______, _______, _______, _______, RGB_HUI,    RGB_MOD, RGB_TOG,      
   _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______, \
   _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
   _______, RGB_HUI, RGB_HUD, RGB_VAI, RGB_VAD, RGB_M_SW,                    _______, _______, _______, KC_LBRC, KC_RBRC, _______, \
-  _______, RGB_M_P, RGB_MOD, RGB_SAI, RGB_SAD, RGB_M_TW, _______, _______,  _______, _______, _______, _______, _______, _______, \
+  _______, RGB_M_P, RGB_MOD, RGB_SAI, RGB_SAD, RGB_M_TW, _______, DF(_QWERTY),  _______, _______, _______, _______, _______, _______, \
                              _______, RGB_TOG, _______,  _______, _______,  _______, _______, _______ \
 
 */
