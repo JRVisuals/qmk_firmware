@@ -30,6 +30,9 @@ void render_layer_logo(void) {
         case 3:
             render_layer4_logo_key();
             break;
+        case 4:
+            render_layer5_logo_key();
+            break;
     }
 }
 
@@ -61,8 +64,14 @@ void oled_render_rgb_mode(void) {
     oled_write_P(PSTR("-----"), false);
     sprintf(rgb_str, "RGB %s", get_u8_str(rgb_matrix_get_mode(), ' '));
     oled_write_ln(rgb_str, false);
-    // oled_write_P(PSTR("RGB"), false);
-    // oled_write_ln(get_u8_str(rgb_matrix_get_mode(), ' '), false);
+    oled_write_P(PSTR("-----\n"), false);
+}
+
+char lay_str[10];
+void oled_render_layer(void) {
+    oled_write_P(PSTR("-----"), false);
+    sprintf(lay_str, "LAY %s", get_u8_str(get_highest_layer(layer_state), ' '));
+    oled_write_ln(lay_str, false);
     oled_write_P(PSTR("-----\n"), false);
 }
 
@@ -77,7 +86,8 @@ bool oled_task_user(void) {
 
         // Text Readouts
         render_layer_name();
-        oled_render_rgb_mode();
+        // oled_render_rgb_mode();
+        oled_render_layer();
 
         // Layer Logo
         render_layer_logo();
