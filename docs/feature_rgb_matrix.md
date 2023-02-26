@@ -609,7 +609,7 @@ enum rgb_matrix_effects {
     RGB_MATRIX_PIXEL_FRACTAL,       // Single hue fractal filled keys pulsing horizontally out to edges
     RGB_MATRIX_PIXEL_FLOW,          // Pulsing RGB flow along LED wiring with random hues
     RGB_MATRIX_PIXEL_RAIN,          // Randomly light keys with random hues
-#if define(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
+#if defined(RGB_MATRIX_FRAMEBUFFER_EFFECTS)
     RGB_MATRIX_TYPING_HEATMAP,      // How hot is your WPM!
     RGB_MATRIX_DIGITAL_RAIN,        // That famous computer simulation
     RGB_MATRIX_DIGITAL_RAIN_RELOADED,        // That famous computer simulation - JoskerDu Version
@@ -1192,7 +1192,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 }
 ```
 
-!> RGB indicators on split keyboards will require state information synced to the slave half (e.g. `#define SPLIT_LAYER_STATE_ENABLE`). See [data sync options](feature_split_keyboard.md#data-sync-options) for more details.
+?> RGB indicators on split keyboards will require state information synced to the slave half (e.g. `#define SPLIT_LAYER_STATE_ENABLE`). See [data sync options](feature_split_keyboard.md#data-sync-options) for more details.
 
 #### Indicators without RGB Matrix Effect
 
